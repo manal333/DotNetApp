@@ -20,7 +20,7 @@ pipeline {
             agent {
                 docker {
                     image 'mcr.microsoft.com/dotnet/sdk:8.0'
-                    args '-e DOTNET_CLI_HOME=/tmp -e HOME=/tmp'
+                    args '-e HOME=/tmp -e DOTNET_CLI_HOME=/tmp -e NUGET_PACKAGES=/tmp/.nuget/packages -e DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1 -e DOTNET_NOLOGO=1 -e DOTNET_CLI_TELEMETRY_OPTOUT=1'
                 }
             }
             steps {
