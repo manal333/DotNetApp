@@ -9,8 +9,8 @@ pipeline {
     }
 
     environment {
-        IMAGE_NAME     = 'DotNetApp'
-        CONTAINER_NAME = 'DotNetApp'
+        IMAGE_NAME     = 'dotnetapp'
+        CONTAINER_NAME = 'dotnetapp'
         HOST_PORT      = '8081'
         APP_PORT       = '8080'
     }
@@ -41,8 +41,11 @@ pipeline {
                 sh '''
                     docker stop ${CONTAINER_NAME} || true
                     docker rm ${CONTAINER_NAME} || true
-                    docker run -d --name ${CONTAINER_NAME} --restart unless-stopped \
-                      -p ${HOST_PORT}:${APP_PORT} ${IMAGE_NAME}:latest
+                    docker run -d \
+                      --name ${CONTAINER_NAME} \
+                      --restart unless-stopped \
+                      -p ${HOST_PORT}:${APP_PORT} \
+                      ${IMAGE_NAME}:latest
                 '''
             }
         }
